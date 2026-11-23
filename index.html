@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North & Ocean | Luxury Cars</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f3ed;
+    color: #111;
+    overflow-x: hidden;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    background: #eeede6;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #111;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.menu-btn {
+    border: 1px solid #111;
+    padding: 12px 22px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.car-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.7s ease;
+}
+
+.hero-content {
+    position: absolute;
+    top: 24%;
+    left: 5%;
+    z-index: 5;
+    max-width: 420px;
+}
+
+.subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 0.95;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.shop-btn:hover {
+    background: #444;
+}
+
+.car-info {
+    position: absolute;
+    bottom: 35px;
+    left: 5%;
+    z-index: 5;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.controls {
+    position: absolute;
+    bottom: 30px;
+    right: 5%;
+    z-index: 5;
+    display: flex;
+    gap: 12px;
+}
+
+.controls button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #222;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.controls button:hover {
+    background: #111;
+    color: white;
+}
+
+@media(max-width: 700px) {
+    .navbar {
+        padding: 22px 5%;
+    }
+
+    .nav-right {
+        gap: 12px;
+    }
+
+    .nav-right a {
+        display: none;
+    }
+
+    .hero-content {
+        top: 25%;
+        left: 6%;
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 43px;
+    }
+
+    .car-image img {
+        object-position: 58% center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <nav class="navbar">
+        <div class="logo">NORTH & OCEAN</div>
+
+        <div class="nav-right">
+            <a href="#">COLLECTION</a>
+            <a href="#">ABOUT</a>
+            <a href="#">CONTACT</a>
+            <button class="menu-btn">MENU</button>
+        </div>
+    </nav>
+
+    <div class="car-image">
+        <img id="car" 
+        src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=2000&q=90"
+        alt="Luxury SUV">
+    </div>
+
+    <div class="hero-content">
+        <p class="subtitle">
+            NORTH & OCEAN PRESENTS
+        </p>
+
+        <h1>
+            ARRIVE LIKE<br>
+            YOU MEAN IT
+        </h1>
+
+        <button class="shop-btn">
+            VIEW THE FLEET
+        </button>
+    </div>
+
+    <div class="car-info">
+        NORTH & OCEAN — LUXURY COLLECTION
+    </div>
+
+    <div class="controls">
+        <button onclick="previousCar()">←</button>
+        <button onclick="nextCar()">→</button>
+    </div>
+
+</section>
+
+<script>
+
+const cars = [
+"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=2000&q=90",
+
+"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90",
+
+"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=90",
+
+"https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=2000&q=90"
+];
+
+let currentCar = 0;
+
+function showCar() {
+    const car = document.getElementById("car");
+
+    car.style.opacity = 0;
+
+    setTimeout(() => {
+        car.src = cars[currentCar];
+        car.style.opacity = 1;
+    }, 400);
+}
+
+function nextCar() {
+    currentCar = (currentCar + 1) % cars.length;
+    showCar();
+}
+
+function previousCar() {
+    currentCar = (currentCar - 1 + cars.length) % cars.length;
+    showCar();
+}
+
+</script>
+
+</body>
+</html>
